@@ -1,0 +1,280 @@
+/* ============================================================================
+   MOBILE TOUCH OVERLAY, ORIENTATION GUARD & THUMB-FRIENDLY HUD CSS (hud.css)
+   ============================================================================ */
+:root {
+  --cyan: #00f2fe;
+  --magenta: #ff0844;
+  --pink: #ff2a85;
+  --lime: #00ff87;
+  --gold: #ffcc00;
+  --panel: rgba(8, 12, 26, 0.88);
+  --border: rgba(0, 242, 254, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  background: #04060e;
+  color: #f0f6ff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+#orientation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at 50% 40%, #0d1630 0%, #04060e 100%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px;
+  pointer-events: auto;
+}
+
+@media screen and (orientation: portrait) and (max-width: 920px) {
+  #orientation-overlay:not(.dismissed) {
+    display: flex;
+  }
+}
+
+.rotate-phone-icon {
+  width: 84px;
+  height: 84px;
+  margin-bottom: 20px;
+  stroke: var(--cyan);
+  filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.65));
+  animation: rotatePhoneAnim 2.2s ease-in-out infinite;
+}
+
+@keyframes rotatePhoneAnim {
+  0%, 15% { transform: rotate(0deg); }
+  50%, 65% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.orient-title {
+  font-size: 22px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.orient-sub {
+  font-size: 13px;
+  color: #9cb2d6;
+  max-width: 300px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.orient-bypass-btn {
+  padding: 9px 18px;
+  border-radius: 99px;
+  border: 1px solid rgba(0, 242, 254, 0.45);
+  background: rgba(0, 242, 254, 0.12);
+  color: #cfe4ff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#touch-controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  padding: 0 22px;
+  display: none;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 20;
+  pointer-events: none;
+  touch-action: none;
+}
+
+#touch-controls.visible {
+  display: flex;
+}
+
+.touch-left-zone {
+  display: flex;
+  gap: 14px;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.steer-btn {
+  width: 84px;
+  height: 80px;
+  border-radius: 20px;
+  background: rgba(10, 18, 38, 0.82);
+  border: 2px solid rgba(0, 242, 254, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.65), inset 0 0 14px rgba(0,242,254,0.18);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  touch-action: none;
+  transition: transform 0.05s, background 0.05s;
+}
+
+.steer-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.steer-btn small {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--cyan);
+  margin-top: 3px;
+  pointer-events: none;
+}
+
+.steer-btn.pressed {
+  background: rgba(0, 242, 254, 0.42);
+  border-color: #fff;
+  transform: scale(0.92);
+  box-shadow: 0 0 26px var(--cyan);
+}
+
+.touch-right-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.upper-boost-row {
+  display: flex;
+  gap: 10px;
+}
+
+.pedal-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.action-btn {
+  border-radius: 18px;
+  background: rgba(10, 18, 38, 0.84);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  touch-action: none;
+  transition: transform 0.05s, background 0.05s;
+}
+
+.action-btn svg {
+  pointer-events: none;
+  fill: currentColor;
+}
+
+.action-btn small {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin-top: 3px;
+  pointer-events: none;
+}
+
+.btn-nitro {
+  width: 78px;
+  height: 60px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 14px rgba(255,204,0,0.22);
+}
+.btn-nitro svg { width: 24px; height: 24px; color: var(--gold); }
+.btn-nitro small { color: var(--gold); }
+.btn-nitro.pressed {
+  background: rgba(255, 204, 0, 0.45);
+  border-color: #fff;
+  transform: scale(0.92);
+  box-shadow: 0 0 28px var(--gold);
+}
+
+.btn-drift {
+  width: 74px;
+  height: 60px;
+  border: 2px solid var(--pink);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 14px rgba(255,42,133,0.22);
+}
+.btn-drift svg { width: 22px; height: 22px; color: var(--pink); }
+.btn-drift small { color: #ff85c0; }
+.btn-drift.pressed {
+  background: rgba(255, 42, 133, 0.45);
+  border-color: #fff;
+  transform: scale(0.92);
+  box-shadow: 0 0 28px var(--pink);
+}
+
+.btn-brake {
+  width: 76px;
+  height: 76px;
+  border: 2px solid var(--magenta);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 14px rgba(255,8,68,0.22);
+}
+.btn-brake svg { width: 28px; height: 28px; color: #ff5c8a; }
+.btn-brake small { color: #ff85a8; }
+.btn-brake.pressed {
+  background: rgba(255, 8, 68, 0.45);
+  border-color: #fff;
+  transform: scale(0.92);
+  box-shadow: 0 0 26px var(--magenta);
+}
+
+.btn-gas {
+  width: 84px;
+  height: 96px;
+  border-radius: 22px;
+  border: 2px solid var(--lime);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.65), inset 0 0 16px rgba(0,255,135,0.24);
+}
+.btn-gas svg { width: 34px; height: 34px; color: var(--lime); }
+.btn-gas small { color: var(--lime); }
+.btn-gas.pressed {
+  background: rgba(0, 255, 135, 0.42);
+  border-color: #fff;
+  transform: scale(0.93);
+  box-shadow: 0 0 30px var(--lime);
+}
+
+@media (max-width: 900px), (max-height: 540px) {
+  .steer-btn { width: 72px; height: 68px; border-radius: 16px; }
+  .btn-gas { width: 74px; height: 84px; }
+  .btn-brake { width: 66px; height: 66px; }
+  .btn-nitro, .btn-drift { width: 68px; height: 52px; }
+}
