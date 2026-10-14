@@ -1,0 +1,53 @@
+{
+  "name": "APEX LEGENDS CIRCUIT",
+  "short_name": "APEX CIRCUIT",
+  "description": "3D Futuristic Neon Racing Game — Mobile & Desktop Cross-Play Multiplayer with Touch HUD & Keyboard Controls",
+  "id": "apex-legends-circuit",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "#04060e",
+  "background_color": "#04060e",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Race",
+      "url": "./index.html",
+      "description": "Jump straight into Apex Circuit"
+    }
+  ],
+  "prefer_related_applications": false
+}
